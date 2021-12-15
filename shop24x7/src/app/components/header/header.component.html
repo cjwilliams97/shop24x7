@@ -1,0 +1,29 @@
+<div>
+    <nav class="navbar navbar-expand-sm navbar-light border-bottom border-dark header">
+        <div class="container-fluid"> 
+            
+            <div style="color: #232323; font-size: 28px;"><a class="ms-3" style="color: #232323; text-decoration: none;">Shop 24x7</a></div>
+            <!--If user is not signed in-->
+            <ul class="nav navbar-nav me-auto ms-4 leftButtons">
+                <li><a class="nav-link" aria-current="page" routerLinkActive="active">Home</a></li>
+                <li><a class="nav-link" aria-current="page" routerLinkActive="active">Departments</a></li>
+                <li><a class="nav-link" aria-current="page" routerLinkActive="active">Offers</a></li>
+                <li><a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="/userprofile">Profile</a></li>
+            </ul>
+            <!--If user is signed in-->
+            <ul class="nav navbar-nav ms-auto rightButtons">
+                <li>
+                    <div class="input-group">
+                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="button" class="btn btn-outline-primary">search</button>
+                  </div>
+                </li>
+                <li>
+                    <a href=""><img class="shoppingCart ms-3 me-3" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-solid-kiranshastry-1.png"/></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</div>
+<!--routerLink-->
