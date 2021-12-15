@@ -1,0 +1,41 @@
+<div class="checkoutPage container">
+    <div class="row container">
+        <div class="card mx-auto mt-4" style="max-width: 450px;" >
+            <div>
+                <form (ngSubmit)="submitOrder()" [formGroup]="orderForm">
+                    <h4 class="mt-2"> User Info</h4>
+                    <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+                        <div class="text-danger" *ngIf="submitted && checkRequiredValidation('firstName'); else lineBreak">First Name is required.</div>
+                        
+                    <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+                        <div class="text-danger" *ngIf="submitted && checkRequiredValidation('lastName'); else lineBreak">Last Name is required.</div>
+
+                    <input type="text" class="form-control" formControlName="email" placeholder="Email">
+                        <div class="text-danger" *ngIf="submitted && checkRequiredValidation('email'); else lineBreak">Email is required.</div>
+                        <div class="text-danger" *ngIf="submitted && checkEmailValidation('email'); else lineBreak">Email is formatted incorrectly</div>
+
+                    <h4>Shipping Address</h4>
+                    <input type="text" class="form-control" formControlName="streetAddress" placeholder="Street Address">
+                        <div class="text-danger" *ngIf="submitted && checkRequiredValidation('streetAddress'); else lineBreak">Street Address is required.</div>
+
+                    <input type="text" class="form-control" formControlName="city" placeholder="City">
+                        <div class="text-danger" *ngIf="submitted && checkRequiredValidation('city'); else lineBreak">City is required.</div>
+                    
+                    <input type="text" class="form-control" formControlName="state" placeholder="State">
+                        <div class="text-danger" *ngIf="submitted && checkRequiredValidation('state'); else lineBreak">State is required.</div>
+
+                    <input type="text" class="form-control" formControlName="zipCode" placeholder="Zip Code">
+                        <div class="text-danger" *ngIf="submitted && checkRequiredValidation('zipCode'); else lineBreak">Zip Code is required.</div>
+
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn placeOrderBtn ms-1 float-end mb-3" type="submit">Place Order</button>
+                    </div>
+                </form>
+        </div>
+
+            <div class="text-end">
+                
+            </div>
+    </div>
+</div>
+<ng-template #lineBreak><br></ng-template>

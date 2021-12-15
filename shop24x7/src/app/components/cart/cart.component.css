@@ -1,0 +1,21 @@
+.cartPage {
+    width: 75%
+}
+.itemListTable {
+    width: 50%
+}
+.itemTableRow {
+    border-bottom: 1px solid black;
+}
+.removeButton {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    color: red;
+}
+.checkoutBtn {
+    background: #fae248
+
+}

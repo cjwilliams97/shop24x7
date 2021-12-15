@@ -1,0 +1,26 @@
+<div class="cartPage container">
+    <h1 class="row mt-2">Cart</h1>
+    <div class="row container">
+        <div *ngIf="cart.isEmpty==true">
+            <h2 class="text-center mt-2"> 
+                Your cart is empty. 
+            </h2>
+        </div>
+        <div *ngIf="cart.isEmpty==false">
+            <div class="itemTableRow mt-2" *ngFor="let item of cart.cartItems">
+                <h6>{{item.product.name}}</h6>
+                Price: {{item.product.price | currency:'USD'}}<br>
+                <span style="color: green" *ngIf="item.product.discount > 0">Discount: {{item.product.discount | currency:'USD'}}<br></span>
+                <div class="btn-group" role="group">
+                    Qty:<input type="text" class="form-control form-control-sm" style="margin-left: 5px; max-width: 35px; text-align:center;" (change)="calculateTotal()" [(ngModel)]="item.quantity">
+                </div><br>
+                    
+                <button class="removeButton" (click)="removeFromCart(item); calculateTotal()">Remove</button>
+            </div>
+            <div class="text-end">
+                <h4>Grand Total: {{total | currency:'USD'}}</h4>
+                <button type="button" class="btn checkoutBtn" (click)="checkoutButtonClick()">Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
