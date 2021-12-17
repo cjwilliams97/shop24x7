@@ -1,0 +1,11 @@
+<!--Displays a listing of products-->
+<div class="container w-75 mt-4 border-dark">
+    <div *ngFor="let prod of products">
+        <h3>
+        <a>
+            {{ prod.name }} {{ prod.price | currency: 'USD' }}
+        </a>
+        </h3>
+        <button type="button" class="viewDetailsButton me-1" (click)="viewProdDetails(prod)">View Details</button>|
+    </div>
+</div>

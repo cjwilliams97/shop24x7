@@ -1,0 +1,27 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
+//sets the product varibales across the site
+const ProductsSchema = new Schema({
+    "id": {
+        type: String,
+        required: true
+    },
+    "name": {
+        type: String,
+        required: true
+    },
+    "description": {
+        type: String,
+        required: true
+    },
+    "price": {
+        type: Number,
+        required: true
+    },
+    "discount": {
+        type: Number,
+        required: true
+    }
+})
+
+module.exports = mongoose.model('Product', ProductsSchema, 'Products');

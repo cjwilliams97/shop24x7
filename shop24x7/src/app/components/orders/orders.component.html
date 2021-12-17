@@ -1,0 +1,61 @@
+<div class="orderPage container">
+    <div *ngIf="userInfo.roleId=='User'">
+        <h2 class="row mt-2">Your Orders</h2>
+        <div class="row container">
+            <div *ngIf="userOrdersList.length==0">
+                <h4 class="text-center mt-2"> 
+                    No orders to display. 
+                </h4>
+            </div>
+            <div *ngIf="userOrdersList.length>0">
+                <div class="orderTableRow mt-2" *ngFor="let order of userOrdersList">
+                    <h6>#{{order._id}}</h6>
+                    Total Price: {{order.orderTotal | currency:'USD'}}<br>
+
+                    <div class="row">
+                        <div class="col"> {{order.userEmail}}</div>
+                        <div class="col text-end">
+                            <button type="button" class="detailsButton me-4">Details</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>  
+    </div>
+    <div *ngIf="userInfo.roleId=='administrator'">
+        <h2 class="row mt-2">Manage Orders</h2>
+        <div class="row container">
+            <div *ngIf="adminOrdersList.length==0">
+                <h4 class="text-center mt-2"> 
+                    No orders to display. 
+                </h4>
+            </div>
+            <div class="orderTableRow mt-2" *ngFor="let order of adminOrdersList | undeliveredOrders">
+                <h6>#{{order._id}}</h6>
+                Total Price: {{order.orderTotal | currency:'USD'}}<br>
+
+                <div class="row">
+                    <div class="col"> {{order.userEmail}}</div>
+                    <div class="col text-end">
+                        <button type="button" class="processButton me-1" (click)="processClicked(order._id)">Process</button>|
+                        <button type="button" class="deleteButton ms-1 me-4" (click)="deleteClicked(order._id)">Delete</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="orderTableRow mt-2" *ngFor="let order of adminOrdersList | deliveredOrders">
+                <h6 style="color: #58e856">#{{order._id}}</h6>
+                Total Price: {{order.orderTotal | currency:'USD'}}<br>
+
+                <div class="row">
+                    <div class="col"> {{order.userEmail}}</div>
+                    <div class="col text-end">
+                        <button type="button" class="deleteButton ms-1 me-4" (click)="deleteClicked(order._id)">Delete</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

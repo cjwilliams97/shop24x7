@@ -4,72 +4,89 @@
             <p class="fw-bolder">Profile</p>
         </div>
         <div class="card-body text-center">
-            
             <div class="row">
-                <div class="col-sm">
-                    <p class="fw-normal">First Name</p>
-                    <p class="fw-bold">{{testUser.firstName}}</p>
+                <div class="col-4">
+                    <div class="row">
+                        <img  class="img-thumbnail">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <button class="btn btn-warning">Delete Image</button>
+                        </div>
+                        <div class="col-sm">
+                            <button class="btn btn-primary">Upload</button>
+                        </div>
+                    </div>        
                 </div>
-                <div class="col-sm">
-                    <p class="fw-normal">Last Name</p>
-                    <p class="fw-bold">{{testUser.lastName}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <p class="fw-normal">Email</p>
-                <p class="fw-bold">{{testUser.email}}</p>
-            </div>
-            <div class="row">
-                <p class="fw-normal">Phone</p>
-                <p class="fw-bold">{{testUser.phone}}</p>
-            </div>
-            <div class="row">
-                <p class="fw-normal">Interests</p>
-                <p class="fw-bold">{{testUser.interests}}</p>
-            </div>
-            <div *ngIf="!editAddress" class="row"> 
-                <div class="col-sm">
-                    <p class="fw-normal">Address</p>
-                    <p class="fw-bold">{{testUser.address}}</p>
-                    <!-- <div *ngFor="let addressDetail of testUser.address">
-                        <p class="fw-bold" style="display:inline-block;">{{addressDetail}}, </p>
-                    </div> -->
-                </div>
-                <div class="col-sm">
-                    <button class="btn btn-primary" (click)="editAddress = true">Edit</button>
-                </div>   
-            </div>
-            <div *ngIf="editAddress" class="row"> 
-                <form #myForm="ngForm" (ngSubmit)="submitMyData(myForm.value)"> 
-                <!-- <form>  -->
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Street Address</label>
-                        <div class="col-sm-10">
-                        <input class="form-control" type="text" placeholder="Street Address" name="streetAddress" ngModel>
+                <div class="col-6">    
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="fw-normal">First Name</p>
+                            <p class="fw-bold">{{testUser.firstName}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="fw-normal">Last Name</p>
+                            <p class="fw-bold">{{testUser.lastName}}</p>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">City</label>
-                        <div class="col-sm-10">
-                        <input class="form-control" type="text" placeholder="City" name="city" ngModel>
-                        </div>
+                    <div class="row">
+                        <p class="fw-normal">Email</p>
+                        <p class="fw-bold">{{testUser.email}}</p>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">State</label>
-                        <div class="col-sm-10">
-                        <input class="form-control" type="text" placeholder="State" name="state"ngModel>
-                        </div>
+                    <div class="row">
+                        <p class="fw-normal">Phone</p>
+                        <p class="fw-bold">{{testUser.phone}}</p>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Zip Code</label>
-                        <div class="col-sm-10">
-                        <input class="form-control" type="text" placeholder="Zip Code" name="zipCode" ngModel>
-                        </div>
+                    <div class="row">
+                        <p class="fw-normal">Interests</p>
+                        <p class="fw-bold">{{testUser.interests}}</p>
                     </div>
-                    <button class="btn btn-danger" (click)="editAddress = false" type="submit">Save Address Test</button>
-                </form>
-                
-            </div>                
+                    <div *ngIf="!editAddress" class="row"> 
+                        <div class="col-sm">
+                            <p class="fw-normal">Address</p>
+                            <p class="fw-bold">{{testUser.address}}</p>
+                            <!-- <div *ngFor="let addressDetail of testUser.address">
+                                <p class="fw-bold" style="display:inline-block;">{{addressDetail}}, </p>
+                            </div> -->
+                        </div>
+                        <div class="col-sm">
+                            <button class="btn btn-primary" (click)="editAddress = true">Edit</button>
+                        </div>   
+                    </div>
+                    <div *ngIf="editAddress" class="row"> 
+                        <form #myForm="ngForm" (ngSubmit)="submitMyData(myForm)"> 
+                        <!-- <form>  -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Street Address</label>
+                                <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="Street Address" name="streetAddress" [(ngModel)]="addressModel.streetAddress" id="streetAddress" #streetAddress="ngModel">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">City</label>
+                                <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="City" name="city" [(ngModel)]="addressModel.city" id="city" #city="ngModel">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">State</label>
+                                <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="State" name="state" [(ngModel)]="addressModel.state" id="state" #state="ngModel">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Zip Code</label>
+                                <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="Zip Code" name="zipCode" [(ngModel)]="addressModel.zipCode" id="zipCode" #zipCode="ngModel">
+                                </div>
+                            </div>
+                            <button class="btn btn-warning" (click)="test()"  type="submit">Save Address Test</button>
+                        </form>
+                        
+                    </div>  
+                </div>  
+            </div>            
             <!-- <form> 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Email Address</label>

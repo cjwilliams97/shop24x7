@@ -1,0 +1,9 @@
+<!--This page displays the product details-->
+<div>
+    <h1>{{ prod.name }}</h1>
+    <body>
+        <p>{{ prod.description }}</p>
+        <p>{{ prod.price | currency: 'USD' }}</p>
+        <button class="product__card-btn" mat-flat-button>Add to cart</button>
+    </body>
+</div>
