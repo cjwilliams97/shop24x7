@@ -1,0 +1,35 @@
+<div id="loginContainer" class="container mt-5">
+    
+    <div class="row">
+        <div class="col">
+            <h3>Welcome to Shop 24x7</h3>
+            <p>Sign in to begin shopping. </p>
+            <div class="text-danger" *ngIf="invalidPassword == true">The password you entered was incorrect.</div>
+            <div class="text-danger" *ngIf="userDNE == true">This user account does not exist. <a style="text-decoration: none" routerLink="/register">Sign up</a> to login.</div>
+        </div>
+        <div class="col">
+            <div class="card mx-auto" style="max-width: 450px;" >
+                <div>
+                    <div class="card-header text-center">Log In</div>
+                    <div class="card-body">
+                        <form (ngSubmit)="onFormSubmit()" [formGroup]="logInForm">
+                            <input type="text" class="form-control" formControlName="email" placeholder="Email Address">
+                                <div class="text-danger" *ngIf="submitted && checkRequiredValidation('email'); else lineBreak">You need to enter an email to sign in.</div>
+                                
+                            <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                                <div class="text-danger" *ngIf="submitted && checkRequiredValidation('password'); else lineBreak">Password is required.</div>
+                            
+                            <div class="d-grid gap-2 d-md-block">
+                                <button class="btn btn-primary ms-1 float-end mb-3" type="submit">Log In</button>
+                                New here? <a style="text-decoration: none" routerLink="/register">Sign up</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+<ng-template #lineBreak><br></ng-template>

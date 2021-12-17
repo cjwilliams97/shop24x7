@@ -1,0 +1,37 @@
+:host {
+    --productSize: 600px;
+}
+
+.product {
+
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.28);
+}
+
+title {
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+content {
+    padding: 1rem;
+}
+
+description {
+    width: 100%;
+}
+
+price {
+    color: #000;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+image {
+    height: calc(var(--productSize) - 100px);
+    width: 100%;
+    object-fit: cover;
+}

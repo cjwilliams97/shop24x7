@@ -1,0 +1,42 @@
+<div id="registerContainer" class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h3>Register your Shop 24x7 account.</h3>
+            <p>Fill out the required fields to register</p>
+        </div>
+        <div class="col">
+            <div class="card mx-auto" style="max-width: 450px;" >
+                <div>
+                    <div class="card-header text-center">Account Registration</div>
+                    <div class="card-body">
+                        <form (ngSubmit)="onFormSubmit()" [formGroup]="signUpForm">
+                            <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+                                <div class="text-danger" *ngIf="submitted && checkRequiredValidation('firstName'); else lineBreak">First Name is required.</div>
+                                
+                            <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+                                <div class="text-danger" *ngIf="submitted && checkRequiredValidation('lastName'); else lineBreak">Last Name is required.</div>
+                                
+                            <input type="text" class="form-control" formControlName="email" placeholder="Email Address">
+                                <div class="text-danger" *ngIf="submitted && checkRequiredValidation('email'); else lineBreak">Email Address is required.</div>
+                                <div class="text-danger" *ngIf="submitted && checkEmailFormat('email')">Email must be formatted as 'emailaddress@domain.com'.</div>
+                                
+                            <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                                <div class="text-danger" *ngIf="submitted && checkRequiredValidation('password'); else lineBreak">Password is required.</div>
+                                <div class="text-danger" *ngIf="submitted && checkMinLength('password')">Password must be a minimum of 8 characters.</div>
+                                
+                            <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password">
+                                <div class="text-danger" *ngIf="submitted && checkRequiredValidation('confirmPassword'); else lineBreak">Confirm Password is required.</div>
+                                <div class="text-danger" *ngIf="submitted && passwordsMatch == false; else lineBreak">Passwords do not match.</div>
+                                
+                            <div class="d-grid gap-2 d-md-block">
+                                <button class="btn btn-secondary float-start mb-3" routerLink="/login">Back to Login</button>
+                                <button class="btn btn-primary float-end mb-3" type="submit">Register New Account</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #lineBreak><br></ng-template>

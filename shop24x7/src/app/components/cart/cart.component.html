@@ -1,13 +1,13 @@
 <div class="cartPage container">
     <h1 class="row mt-2">Cart</h1>
     <div class="row container">
-        <div *ngIf="cart.isEmpty==true">
+        <div *ngIf="cart.length==0">
             <h2 class="text-center mt-2"> 
                 Your cart is empty. 
             </h2>
         </div>
-        <div *ngIf="cart.isEmpty==false">
-            <div class="itemTableRow mt-2" *ngFor="let item of cart.cartItems">
+        <div *ngIf="cart.length > 0">
+            <div class="itemTableRow mt-2" *ngFor="let item of cart">
                 <h6>{{item.product.name}}</h6>
                 Price: {{item.product.price | currency:'USD'}}<br>
                 <span style="color: green" *ngIf="item.product.discount > 0">Discount: {{item.product.discount | currency:'USD'}}<br></span>

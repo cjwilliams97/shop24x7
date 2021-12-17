@@ -22,13 +22,13 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(item : any) {
-    this.cart.cartItems.forEach((element:any,index: any)=>{
-      if(element.product.name == item.product.name) this.cart.cartItems.splice(index,1);
+    this.cart.forEach((element:any,index: any)=>{
+      if(element.product.name == item.product.name) this.cart.splice(index,1);
    });
   }
   calculateTotal() {
     var total = 0;
-    for (let item of this.cart.cartItems) {
+    for (let item of this.cart) {
       total = total + ((item.product.price * item.quantity) - (item.product.discount * item.quantity))
     }
     this.total = total;
