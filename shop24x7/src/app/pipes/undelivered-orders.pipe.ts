@@ -10,7 +10,6 @@ export class UndeliveredOrdersPipe implements PipeTransform {
     if (!value) {
       return
     }
-    console.log (value)
     const filtered = value.filter((order : any) => {
       return order.delivered==false;
     })

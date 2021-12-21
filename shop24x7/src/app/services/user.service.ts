@@ -16,14 +16,15 @@ export class UserService {
     interests: '',
     address: ['','','',0]
   }
-  token : string = "";
   constructor(private http : HttpClient) { }
 
   getCurrentUser() {
-    return this.currentUser;
+    var userData = JSON.parse(document.cookie).userData;
+    return userData;
   }
   getToken() {
-    return this.token;
+    var token = JSON.parse(document.cookie).userToken
+    return token;
   }
   createNewUser(newUser: User){
     //add user to db (use for registering a new user)
@@ -33,8 +34,9 @@ export class UserService {
       this.http.post('http://localhost:3000/loginUser', loginData)
       .subscribe(
         (res : any) => {
-          this.currentUser = res.userData
-          this.token = res.token
+          var CookieObj = {userToken: res.token, userData: res.userData}
+          document.cookie = JSON.stringify(CookieObj);
+
           resolve(res)
         },
         (error) => {

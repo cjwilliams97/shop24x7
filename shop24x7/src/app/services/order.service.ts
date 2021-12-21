@@ -172,7 +172,6 @@ export class OrderService {
     return new Promise ((resolve, reject) => {
       this.userData = this._userService.getCurrentUser();
       const token = this._userService.getToken()
-      console.log(token)
       var headers = new HttpHeaders({'Authorization': 'Bearer ' + token})
       this.http.get('http://localhost:3000/getOrdersForId', {headers: headers})
       .subscribe ( 
@@ -183,7 +182,6 @@ export class OrderService {
           reject(error)
         }
       )
-      //submit order to database here
       
     })
   }
@@ -192,7 +190,6 @@ export class OrderService {
     return new Promise ((resolve, reject) => {
       this.userData = this._userService.getCurrentUser();
       const token = this._userService.getToken()
-      console.log(token)
       var headers = new HttpHeaders({'Authorization': 'Bearer ' + token})
       this.http.get('http://localhost:3000/getAllOrders', {headers: headers})
       .subscribe ( 
@@ -203,11 +200,11 @@ export class OrderService {
           reject(error)
         }
       )
-      //submit order to database here
       
     })
   }
   submitOrder() {
+    //submit order to database
     return new Promise ((resolve, reject) => {
       this.userData = this._userService.getCurrentUser();
       var newOrder: order = {
@@ -220,7 +217,6 @@ export class OrderService {
         delivered: false
       }
       const token = this._userService.getToken()
-      console.log(token)
       var headers = new HttpHeaders({'Authorization': 'Bearer ' + token})
       this.http.post('http://localhost:3000/submitOrder', newOrder, {headers: headers})
       .subscribe ( 
@@ -231,9 +227,40 @@ export class OrderService {
           reject(error)
         }
       )
-      //submit order to database here
       
     })
 
+  }
+  processOrderById(_id : any) {
+    return new Promise ((resolve, reject) => {
+      const httpParams = {orderId: _id}
+      const token = this._userService.getToken()
+      var headers = new HttpHeaders({'Authorization': 'Bearer ' + token})
+      this.http.post('http://localhost:3000/processOrderById', httpParams, {headers: headers})
+      .subscribe( 
+        (res) => {
+          resolve(res)
+        },
+        (error) => {
+          reject(error)
+        }
+      )
+    })
+  }
+  deleteOrderById(_id : any) {
+    return new Promise ((resolve, reject) => {
+      const httpParams = {orderId: _id}
+      const token = this._userService.getToken()
+      var headers = new HttpHeaders({'Authorization': 'Bearer ' + token})
+      this.http.post('http://localhost:3000/deleteOrderById', httpParams, {headers: headers})
+      .subscribe( 
+        (res) => {
+          resolve(res)
+        },
+        (error) => {
+          reject(error)
+        }
+      )
+    })
   }
 }
