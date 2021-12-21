@@ -13,13 +13,12 @@ import { DeliveredOrdersPipe } from 'src/app/pipes/delivered-orders.pipe';
 export class OrdersComponent implements OnInit {
 
   userInfo: any
-  userOrdersList: any;
-  adminOrdersList: any;
+  userOrdersList: any = [];
+  adminOrdersList: any = [];
   constructor(private _userService: UserService, private _orderService: OrderService) { }
 
   ngOnInit(): void {
     this.userInfo = this._userService.getCurrentUser();
-    console.log(this.userInfo.roleId)
     if (this.userInfo.roleId=='administrator') {
       this._orderService.getAdminOrdersList()
       .then(
@@ -33,21 +32,45 @@ export class OrdersComponent implements OnInit {
       this._orderService.getUserOrdersList()
       .then(
         (res) => {
-          console.log(res)
           this.userOrdersList = res;
         }
       )
     }  
   }
   processClicked(_id: any) {
-    this.adminOrdersList.forEach((element:any,index: any)=>{
-      if(element._id == _id) this.adminOrdersList[index].delivered = true;
-   });
+    
+   this._orderService.processOrderById(_id)
+   .then ( 
+      (res) => {
+        console.log(res)
+        this.adminOrdersList.forEach((element:any,index: any)=>{
+          if(element._id == _id) this.adminOrdersList[index].delivered = true;
+       });
+      })
+    .catch (
+      (error) => {
+        console.log(error)
+      }
+    )
   }
   deleteClicked(_id: any) {
-    this.adminOrdersList.forEach((element:any,index: any)=>{
-      if(element._id == _id) this.adminOrdersList.splice(index,1);
-   });
+    
+    this._orderService.deleteOrderById(_id)
+    .then (
+      (res) => {
+        console.log(res)
+        this.adminOrdersList.forEach((element:any,index: any)=>{
+          if(element._id == _id) this.adminOrdersList.splice(index,1);
+        })
+      }
+    )
+    .catch ( 
+      (error) => {
+        console.log(error.error)
+      }
+    )
   }
+    
+
 
 }

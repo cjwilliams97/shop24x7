@@ -18,7 +18,6 @@ router.post('/create', product_controller.product_create);
 router.get('/products/:id', product_controller.product_details);
 router.put('/update/:id', product_controller.product_update);
 router.delete('/delete/:id', product_controller.product_delete);
-router.post('/registerUser', userController.registerUser)
 
 
 //user routes
@@ -31,6 +30,8 @@ router.post('/loginUser', userController.loginUser)
 router.post('/submitOrder', orderController.submitOrder)
 router.get('/getAllOrders', orderController.getAllOrders)
 router.get('/getOrdersForId', orderController.getOrdersForId)
+router.post('/processOrderById', orderController.processOrderById)
+router.post('/deleteOrderById', orderController.deleteOrderById)
 module.exports = router;
 
 
