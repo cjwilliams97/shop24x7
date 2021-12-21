@@ -20,9 +20,7 @@ export class UserService {
     interests: '',
     address: ['','','',0]
   }
-  //token : string = "";
 
-  private token!: string;
 
   private authStatusListner = new Subject<boolean>();
   private isAuthenticated = false;
@@ -39,10 +37,17 @@ export class UserService {
   }
 
   getCurrentUser() {
-    return this.currentUser;
+    var userData = JSON.parse(document.cookie).userData;
+    return userData;
   }
   getToken() {
-    return this.token;
+    var token = JSON.parse(document.cookie).userToken
+    if (token != undefined) {
+      return token
+    }
+    else {
+      return "";
+    }
   }
   createNewUser(newUser: User){
     //add user to db (use for registering a new user)
@@ -57,14 +62,14 @@ export class UserService {
       this.http.post('http://localhost:3000/loginUser', loginData)
       .subscribe(
         (res : any) => {
-          this.currentUser = res.userData;
-          this.token = res.token;
+          var CookieObj = {userToken: res.token, userData: res.userData}
+          document.cookie = JSON.stringify(CookieObj);
+
+          resolve(res)
           
           resolve(res);
-          if(this.token){
-            this.isAuthenticated = true;
-            this.authStatusListner.next(true);
-          }
+          this.isAuthenticated = true;
+          this.authStatusListner.next(true);
           
         },
         (error) => {
@@ -77,7 +82,8 @@ export class UserService {
   }
 
   logout(){
-    this.token = null as any;
+    var CookieObj = {userToken: "", userData: ""}
+    document.cookie = JSON.stringify(CookieObj);
     this.isAuthenticated = false;
     this.authStatusListner.next(false);
     this.router.navigate(['/']);
